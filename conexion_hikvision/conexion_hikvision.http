@@ -1,0 +1,6 @@
+@conexion_hikvision_HostAddress = http://localhost:5062
+
+GET {{conexion_hikvision_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
