@@ -7,6 +7,9 @@ using System.Text;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using UserManagement;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CardManagement
 {
@@ -83,11 +86,9 @@ namespace CardManagement
         }
 
         //Add Hikvision device
-        public static bool Login(string user, string password, string port, string ip)
+        public static int Login(string user, string password, string port, string ip)
         {
-            //    string textBoxUserName = "admin", textBoxPassword = "Repara123",
-            //    textBoxDeviceAddress = "187.216.118.73";
-            //    string textBoxPort = "5551";
+
 
             struDeviceInfo = new DeviceInfo();
             struDeviceInfo.strUsername = user;
@@ -95,7 +96,9 @@ namespace CardManagement
             struDeviceInfo.strDeviceIP = ip;
             struDeviceInfo.strHttpPort = port;
 
-            bool num = false;
+           // bool num = false;
+
+            /*
             if (Security.Login(struDeviceInfo))
             {
                 // user check success
@@ -103,8 +106,9 @@ namespace CardManagement
                 struDeviceInfo.bIsLogin = true;
                 Console.WriteLine("Hecho");
             }
+            */
 
-            return num;
+            return Security.Login(struDeviceInfo);
 
         }
 

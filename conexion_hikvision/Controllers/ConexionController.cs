@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using CardManagement;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace conexion_hikvision.Controllers
 {
@@ -10,12 +12,14 @@ namespace conexion_hikvision.Controllers
     public class ConexionController : ControllerBase
     {
         [HttpGet]
+        [AllowAnonymous]
+        [EnableCors]
         [Route("login")]
 
 
-        public bool login()
+        public int login()
         {
-            return AddDevice.Login("admin", "Repara123", "5551", "187.216.118.73");
+            return AddDevice.Login("x", "x", "x", "x");
 
 
         }

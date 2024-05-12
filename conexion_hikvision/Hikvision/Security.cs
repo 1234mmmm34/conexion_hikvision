@@ -10,7 +10,7 @@ namespace CardManagement
 {
     class Security
     {
-        public static bool Login(DeviceInfo struDeviceInfo)
+        public static int Login(DeviceInfo struDeviceInfo)
         {
             string strUsername = struDeviceInfo.strUsername;
             string strPassword = struDeviceInfo.strPassword;
@@ -27,26 +27,8 @@ namespace CardManagement
                 if (strResponse != string.Empty)
                 {
                     Console.WriteLine(struDeviceInfo.strDeviceNickName+" Login success");
-                    return true;
+                   // return true;
 
-//                     XmlDocument xml = new XmlDocument();
-//                     xml.LoadXml(strResponse);
-//                     if (xml.DocumentElement != null)
-//                     {
-//                         XmlNodeList childNodes = xml.DocumentElement.ChildNodes;
-//                         foreach (XmlNode node in childNodes)
-//                         {
-//                             if (node.Name == "statusValue")
-//                             {
-//                                 if (node.InnerText == "200")
-//                                 {
-//                                     // user check success
-//                                     MainForm.LogInfo(struDeviceInfo.strDeviceNickName, null, "Login success");
-//                                     return true;
-//                                 }
-//                             }
-//                         }
-//                     }
                 }
             }
             else if (iRet == (int)HttpClient.HttpStatus.HttpOther)
@@ -60,7 +42,8 @@ namespace CardManagement
             {
                 Console.WriteLine(struDeviceInfo.strDeviceNickName+" Login failed!  Describe: " + strResponse);
             }
-            return false;
+            // return false;
+            return client.HttpRequest(strUsername, strPassword, strUrl, strHttpMethod, ref strResponse);
         }
 
         private static XmlDocument fnCreatActiveRequest(byte[] byChallenge, int iOutLen, string strPWD)
